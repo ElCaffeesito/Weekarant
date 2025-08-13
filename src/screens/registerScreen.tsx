@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AuthStackParamList } from '../navigation/authNavigator';
+import { RootStackParamList } from '../navigation/appNavigator';
 import AuthInput from '../components/authInput';
 
-type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;
 
 type RegisterForm = {
   email: string;
@@ -28,7 +28,7 @@ export default function RegisterScreen({ navigation }: Props) {
         <AuthInput name="password" control={control} placeholder="Password" secureTextEntry />
   
         <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}><Text style={styles.buttonTitle}>Register</Text></Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Register')}><Text style={styles.buttonTitle}>Back to Login</Text></Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Login')}><Text style={styles.buttonTitle}>Back to Login</Text></Pressable>
       </View>
     );
 }

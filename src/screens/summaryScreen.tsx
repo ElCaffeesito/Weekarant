@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, Platform } from "react-native";
 import Topbar from "../components/topbar";
-import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/appNavigator";
 
@@ -58,39 +57,23 @@ export default function SummaryScreen({ navigation }: Props) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <>
       <Topbar
-        title="Gestión"
-        onBackPress={() => navigation.goBack()}
-        rightIcon="add"
-        onRightPress={addItem}
+        title="Summary"
       />
 
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={{ padding: 20 }}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Text style={styles.itemText}>{item.name}</Text>
-            <View style={styles.actions}>
-              <TouchableOpacity
-                onPress={() => editItem(item.id)}
-                style={styles.iconButton}
-              >
-                <Ionicons name="pencil" size={20} color="blue" />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => deleteItem(item.id)}
-                style={styles.iconButton}
-              >
-                <Ionicons name="trash" size={20} color="red" />
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-      />
+      <View style={styles.mainContainer}>
+        <View style={styles.row}>
+      <View style={styles.bigColumn}>
+        <Text style={styles.text}>Aqui van graficas si son necesarias</Text>
+      </View>
+      <View style={styles.smallColumn}>
+        <Text style={styles.text}>Aqui van los textos con los datos y con colores de semaforo</Text>
+      </View>
     </View>
+      </View>
+
+    </>
   );
 }
 
@@ -104,14 +87,37 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 10,
   },
-  itemText: {
-    fontSize: 16,
-    fontWeight: "500",
+  row: {
+    flexDirection: 'row',
+    width: '100%',
+    height: 100,
   },
-  actions: {
-    flexDirection: "row",
+  bigColumn: {
+    flex: 2,
+    backgroundColor: '#3498db',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 5
   },
-  iconButton: {
-    marginLeft: 10,
+  smallColumn: {
+    flex: 1,
+    backgroundColor: '#e67e22',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 5
+  },
+  text: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  mainContainer: {
+    width: "95%",
+    height: "90%",
+    backgroundColor: "#ccc",
+    margin: 10,
+    alignSelf: "center",
+    borderRadius: 5
   },
 });

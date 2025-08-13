@@ -1,10 +1,9 @@
 // components/Topbar.tsx
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/appNavigator"; // Ajusta a tu tipo
+import { RootStackParamList } from "../navigation/appNavigator";
 
 interface TopbarProps {
   title: string;
@@ -15,7 +14,7 @@ export default function Topbar({ title, showBack = false }: TopbarProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
-    <View style={styles.container}>
+    <>
       <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <Text style={styles.link}>Home</Text>
@@ -33,23 +32,20 @@ export default function Topbar({ title, showBack = false }: TopbarProps) {
         <Text style={styles.link}>Summary</Text>
       </TouchableOpacity>
     </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#222",
+    backgroundColor: "#777",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-around", // Puedes usar 'space-between' si prefieres extremos
     paddingVertical: 12,
   },
   link: {
     color: "white",
     fontSize: 16,
     fontWeight: "600",
-    display: "flex",
-    justifyContent: "space-between"
   },
 });
-

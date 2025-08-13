@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AuthNavigator from './src/navigation/authNavigator';
 import AppNavigator from './src/navigation/appNavigator';
 
 export default function App() {
@@ -9,7 +8,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <AppNavigator />
-      {/* <AuthNavigator /> */}
     </NavigationContainer>
   );
 }
