@@ -4,6 +4,7 @@ import Topbar from "../components/topbar";
 import { Dropdown } from 'react-native-element-dropdown';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/appNavigator";
+import { GlobalState } from '../globals/globals';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Management">;
 
@@ -28,6 +29,14 @@ export default function ManagementScreen({ navigation }: Props) {
         <View style={styles.row}>
           <View style={styles.bigColumn}>
             <Text style={styles.text}>Aqui va todo el log o historial de calculos</Text>
+            <View>
+              {GlobalState.map((item, index) => (
+                <View key={index}>
+                  <Text>Fecha: {item.formattedDate}</Text>
+                    <Text>Amount: ${item.amount}</Text>
+                </View>
+              ))}
+            </View>
           </View>
           <View style={styles.smallColumn}>
             <Dropdown

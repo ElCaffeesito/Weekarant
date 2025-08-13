@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, TextInput } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/appNavigator';
-import Topbar from "../components/topbar"
+import Topbar from "../components/topbar";
+import { GlobalState } from '../globals/globals';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DataForm'>;
 
@@ -20,14 +21,18 @@ type dataForm = {
     amount: string;
 };
 
-
 export default function DataFormScreen({ navigation }: Props) {
 
     const { control, handleSubmit } = useForm<dataForm>();
+    const [text, setText] = useState('');
 
-    const onSubmit = (data: dataForm) => {
-        console.log('Login:', data);
-        // se conetca con el backend o auth service
+    function saveData(text: string): void {
+        GlobalState.push(
+        {
+            formattedDate: formattedDate,
+            amount: text
+        }
+    )
     };
 
     return (
@@ -40,9 +45,9 @@ export default function DataFormScreen({ navigation }: Props) {
                 <Text style={styles.title}>Weekly Summary</Text>
 
                 <Text style={styles.title} >{formattedDate}</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} value={text} onChangeText={setText}  />
 
-                <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}><Text style={styles.buttonTitle}>Send</Text></Pressable>
+                <Pressable style={styles.button} onPress={() => {saveData(text); setText('')}}><Text style={styles.buttonTitle}>Send</Text></Pressable>
             </View>
         </>
     );
